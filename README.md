@@ -33,7 +33,7 @@ Running the Application:
 Activate the virtual environment with:
 sh
 Copy code
-source /Users/yakupaltinisik/anaconda3/envs/finenv/bin/activate
+source /Users/yakupaltinisik/anaconda3/envs/mlenv/bin/activate
 Run the Flask application with:
 sh
 Copy code
