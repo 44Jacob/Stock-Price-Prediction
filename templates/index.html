@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/css/style.css">
+    <script src="https://cdn.plot.ly/plotly-2.31.1.min.js" charset="utf-8"></script>
+    <title>Stocks Analysis</title>
+</head>
+
+<body>
+    <nav>Stocks Analysis</nav>
+
+    <div id="container">
+        <div id="filters">
+            <label for="selections">Stocks To Analyze</label>
+            <input type="text" id="selections" placeholder="MSFT,APPL">
+
+            <label for="start">Start Date</label>
+            <input type="text" id="start" placeholder="2024-01-01">
+
+            <label for="end">End Date</label>
+            <input type="text" id="end" placeholder="2024-03-30">
+
+            <button onclick="stockSel()">Start</button>
+        </div>
+
+        <div id="stocks"></div>
+
+        <div id="charts">
+            <div id="chart01"></div>
+            <div id="chart02"></div>
+        </div>
+    </div>
+
+    <script src="static/js/script.js"></script>
+</body>
+
+</html>
