@@ -1,58 +1,48 @@
-Stock Market Trend Analysis Project
-Overview
-This project explores stock market trends, leveraging data science techniques to analyze stock performances, sentiment analysis on financial news, and optimize investment portfolios. Focused on a select group of tickers (MSFT, CRM, CRWD, ZM, SHOP, AAPL), it aims to provide insights into their historical performance, market sentiment surrounding these companies, and strategies for portfolio optimization.
+Flask Application for Stock Analysis
 
-Features
-Historical Price Analysis: Utilizes Yahoo Finance data to examine stock price trends over time.
-Sentiment Analysis: Applies NLP techniques to gauge the market sentiment from financial news and social media.
-Portfolio Optimization: Implements Modern Portfolio Theory (MPT) to identify the optimal asset allocation.
-Getting Started
-Prerequisites
-Ensure you have Python installed on your system, along with Jupyter Notebooks. This project also requires the following Python libraries: pandas, numpy, matplotlib, yfinance, scikit-learn, textblob.
+This project focuses on developing a Flask application to analyze stock data and provide insights using Python, SQLAlchemy, and machine learning techniques.
 
-You can install these with the following command:
+Project Setup:
 
+Created a virtual environment named finenv.
+Installed essential packages: Flask, SQLAlchemy, NumPy, Pandas, yFinance, TextBlob, and scikit-learn.
+Application Structure:
+
+app.py: The core of the Flask application, setting up the web framework and routes.
+config.py: Contains configuration variables, including the API key.
+api_func.py: Holds custom functions for data fetching and processing.
+Main Flask Application (app.py):
+
+Imports necessary libraries for data analysis and machine learning.
+Sets up the Flask application and configures SQLAlchemy for database interactions.
+Defines a simple home route.
+Configuration File (config.py):
+
+Stores the API key and other configuration settings.
+API Functions (api_func.py):
+
+Includes functions like get_avg_sentiment_scores, read_data, load_data_to_db, fetch_news, and fetch_all_stock_data to handle data operations and analysis.
+Data Processing and Analysis:
+
+Fetches stock data using yFinance.
+Interacts with the database using SQLAlchemy.
+Performs sentiment analysis with TextBlob.
+Uses Linear Regression from scikit-learn for stock price prediction.
+Running the Application:
+
+Activate the virtual environment with:
 sh
 Copy code
-pip install pandas numpy matplotlib yfinance scikit-learn textblob jupyter
-Installation
-Clone this repository to your local machine to get started:
-
+source /Users/yakupaltinisik/anaconda3/envs/finenv/bin/activate
+Run the Flask application with:
 sh
 Copy code
-git clone https://your-repository-url-here
-Navigate to the project directory and launch Jupyter Notebook:
+flask run
+Demonstration:
 
-sh
-Copy code
-cd path/to/your/project
-jupyter notebook
-Open the Stock_Market_Trend_Analysis.ipynb notebook to view the project.
+Live demonstration of the application, showing how to fetch stock data, perform sentiment analysis, and predict stock prices.
+Conclusion:
 
-Usage
-The project is structured as a Jupyter Notebook consisting of various sections each dedicated to a specific part of the analysis:
-
-Data Collection: Fetches historical stock data using yfinance.
-Data Exploration and Visualization: Provides insights into stock performance over time.
-Sentiment Analysis: Analyzes sentiment from textual data and correlates it with stock prices.
-Portfolio Optimization: Demonstrates how to allocate assets to maximize returns for a given level of risk.
-Run each cell in the notebook from top to bottom to replicate the analysis.
-
-Contributing
-Contributions to this project are welcome. Please follow these steps to contribute:
-
-Fork the project repository.
-Create a new branch (git checkout -b feature/AmazingFeature).
-Commit your changes (git commit -m 'Add some AmazingFeature').
-Push to the branch (git push origin feature/AmazingFeature).
-Open a Pull Request.
-License
-Distributed under the MIT License. See LICENSE for more information.
-
-Acknowledgments
-Data provided by Yahoo Finance via the yfinance library.
-Sentiment analysis powered by textblob.
-Portfolio optimization techniques inspired by Modern Portfolio Theory (MPT).
-
-
-
+Developed a comprehensive Flask application for stock analysis.
+Integrated various Python libraries for data fetching, processing, and machine learning.
+Potential future improvements include more advanced models and a more interactive user interface.
