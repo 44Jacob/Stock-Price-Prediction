@@ -1,1 +1,0 @@
-web: gunicorn fin-data-tech-analysis.app:app
