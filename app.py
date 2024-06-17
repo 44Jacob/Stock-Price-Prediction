@@ -3,11 +3,12 @@ import sqlite3
 import sqlalchemy
 import numpy as np
 import pandas as pd
+import yfinance as yf
 from config import api_key
 from textblob import TextBlob
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, text
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, jsonify, request
 from api_func import get_avg_sentiment_scores, read_data, load_data_to_db, fetch_news, fetch_all_stock_data
 
 app = Flask(__name__)
@@ -45,7 +46,40 @@ def get_data():
 
     df.Date = df.Date.str.replace('\s.*','',regex=True)
 
+    start_date = request.json.get('start_date')
     return df.to_dict(orient='records')
+
+@app.route('/analyze', methods=['POST'])
+def analyze():
+    data = request.get_json()
+    tickers = data.get('tickers')
+    start_date = data.get('start_date')
+    end_date = data.get('end_date')
+
+    results = {}
+    if tickers and start_date and end_date:
+        tickers_list = [ticker.strip() for ticker in tickers.split(',')]
+        for ticker in tickers_list:
+            try:
+                stock_data = yf.download(ticker, start=start_date, end=end_date)
+                if stock_data.empty:
+                    results[ticker] = {'error': 'No data available for this ticker and date range'}
+                else:
+                    current_price = stock_data['Close'][-1]
+                    predicted_price = predict_stock_price(stock_data)  # Example function
+                    results[ticker] = {'current_price': current_price, 'predicted_price': predicted_price}
+            except Exception as e:
+                results[ticker] = {'error': str(e)}
+    else:
+        return jsonify({'error': 'Invalid input data'}), 400
+
+    return jsonify(results)
+
+def predict_stock_price(data):
+    # Example prediction logic
+    return data['Close'][-1] * 1.05  # Dummy prediction
+
+
     
 # import os
 # import pandas as pd
@@ -68,10 +102,6 @@ def get_data():
 # def homepage():
 #     return render_template('index.html')
 
-# @app.route('/api/v1.0/load_data/<tickers>/<start>/<end>')
-# def load_data(tickers, start='2020-01-01', end='2024-01-01'):
-#     tickers = tickers.split(',')  # Ensure tickers are passed as a list
-#     fetch_all_stock_data(tickers, start, end)
 #     return '<h1>Data has been loaded to the Database</h1>'
 
 # @app.route('/api/v1.0/stock_sentiment_score')
@@ -109,7 +139,6 @@ def get_data():
 #         return jsonify(error=str(e)), 500
 #     finally:
 #         session.close()
-
 
 # if __name__ == '__main__':
 #     app.run(debug=True)

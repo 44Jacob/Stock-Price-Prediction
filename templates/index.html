@@ -1,40 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="static/css/style.css">
-    <script src="https://cdn.plot.ly/plotly-2.31.1.min.js" charset="utf-8"></script>
-    <title>Stocks Analysis</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Machine Learning Stocks Analysis</title>
 </head>
-
 <body>
-    <nav>Stocks Analysis</nav>
-
-    <div id="container">
-        <div id="filters">
-            <label for="selections">Stocks To Analyze</label>
-            <input type="text" id="selections" placeholder="MSFT,APPL">
-
-            <label for="start">Start Date</label>
-            <input type="text" id="start" placeholder="2024-01-01">
-
-            <label for="end">End Date</label>
-            <input type="text" id="end" placeholder="2024-03-30">
-
-            <button onclick="stockSel()">Start</button>
+    <div class="container">
+        <h1>Machine Learning Stocks Analysis</h1>
+        <div class="form-group">
+            <label for="tickers">Stocks To Analyze</label>
+            <input type="text" id="tickers" name="tickers" placeholder="e.g., MSFT,AAPL">
         </div>
-
-        <div id="stocks"></div>
-
-        <div id="charts">
-            <div id="chart01"></div>
-            <div id="chart02"></div>
+        <div class="form-group">
+            <label for="start_date">Start Date</label>
+            <input type="date" id="start_date" name="start_date">
+        </div>
+        <div class="form-group">
+            <label for="end_date">End Date</label>
+            <input type="date" id="end_date" name="end_date">
+        </div>
+        <button id="startButton">Start</button>
+        <div class="output" id="selectedTickers"></div>
+        <div class="output" id="modelsExplanation">
+            <h2>Models Explanation</h2>
+            <p id="modelsText"></p>
         </div>
     </div>
-
     <script src="static/js/script.js"></script>
 </body>
-
 </html>
